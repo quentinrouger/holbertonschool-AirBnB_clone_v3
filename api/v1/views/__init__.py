@@ -1,4 +1,5 @@
 from flask import Blueprint
+""" init of views"""
 
 app_views = Blueprint('app_view', __name__, url_prefix='/api/v1')
 
