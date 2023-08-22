@@ -12,4 +12,3 @@ def return_status():
     response = Response(json.dumps(response_data),
                         content_type='application/json')
     return response
-
