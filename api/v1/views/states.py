@@ -22,10 +22,11 @@ def get_states(state_id=None):
             list_state.append(state.to_dict())
         return jsonify(list_state)
     else:
-        state = storage.get(State, state_id)  
+        state = storage.get(State, state_id)
         if state is None:
-            return jsonify({'error': 'Not found'}), 404
+            return jsonify({'error': 'State not found'}), 404
         return jsonify(state.to_dict())
+
 
 @app_views.route('/states/<state_id>', methods=['DELETE'],
                  strict_slashes=False)
@@ -33,7 +34,7 @@ def delete_state(state_id):
     """Deletes a State object"""
     state = storage.get(State, state_id)
     if state is None:
-        return jsonify({'error': 'Not found'}), 404
+        return jsonify({'error': 'State not found'}), 404
     storage.delete(state)
     storage.save()
     return jsonify({}), 200
@@ -59,7 +60,7 @@ def update_state(state_id):
     if state_obj is None:
         return jsonify({'error': 'Not Found'}), 404
     req_json = request.get_json()
-    if not req_json :
+    if not req_json:
         return jsonify({'error': 'Not a JSON'}), 400
     for key, value in req_json.items():
         if key not in ['id', 'created_at', 'updated_at']:
