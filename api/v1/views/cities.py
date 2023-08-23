@@ -7,6 +7,7 @@ from models import storage
 from flask import jsonify, request
 from api.v1.views import app_views
 
+
 @app_views.route('/states/<state_id>/cities', methods=['GET'],
                  strict_slashes=False)
 def get_cities(state_id):
@@ -47,7 +48,7 @@ def create_city(state_id):
     request_data = request.get_json()
     state = storage.get(State, state_id)
     if state is None:
-        jsonify({'error': 'State not found'}), 404
+        return jsonify({'error': 'State not found'}), 404
     if not request_data:
         return jsonify({'error': 'Not a JSON'}), 400
     if "name" not in request_data:
