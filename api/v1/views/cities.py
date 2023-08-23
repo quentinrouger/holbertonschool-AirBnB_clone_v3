@@ -15,7 +15,7 @@ def get_cities(state_id):
 
     state_id = storage.get(State, state_id)
     if state_id is None:
-        return jsonify({'error': 'State not found'}), 404
+        return jsonify({'error': 'City not found'}), 404
     return jsonify([city.to_dict() for city in state_id.cities])
 
 
@@ -48,7 +48,7 @@ def create_city(state_id):
     request_data = request.get_json()
     state = storage.get(State, state_id)
     if state is None:
-        return jsonify({'error': 'State not found'}), 404
+        return jsonify({'error': 'City not found'}), 404
     if not request_data:
         return jsonify({'error': 'Not a JSON'}), 400
     if "name" not in request_data:
@@ -65,7 +65,7 @@ def update_city(city_id):
     """Update a city based on its id"""
     city_obj = storage.get(City, city_id)
     if city_obj is None:
-        return jsonify({'error': 'State not Found'}), 404
+        return jsonify({'error': 'City not Found'}), 404
     req_json = request.get_json()
     if not req_json:
         return jsonify({'error': 'Not a JSON'}), 400

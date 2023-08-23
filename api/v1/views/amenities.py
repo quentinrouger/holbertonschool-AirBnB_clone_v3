@@ -58,7 +58,7 @@ def update_amenity(amenity_id):
 
     amenity_obj = storage.get(Amenity, amenity_id)
     if amenity_obj is None:
-        return jsonify({'error': 'State not Found'}), 404
+        return jsonify({'error': 'Amenity not Found'}), 404
     req_json = request.get_json()
     if not req_json:
         return jsonify({'error': 'Not a JSON'}), 400
