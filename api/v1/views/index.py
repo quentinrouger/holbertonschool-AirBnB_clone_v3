@@ -14,6 +14,7 @@ def return_status():
                         content_type='application/json')
     return response
 
+
 @app_views.route('/stats', strict_slashes=False)
 def get_stats():
     """
